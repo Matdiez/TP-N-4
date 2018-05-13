@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:panel id="pnlNúmeros" header="Lista de Números">
+            <h:form id="frmNúmeros">
+                <p:panelGrid id="tblNúmerosAlt" columns="2">
+                    <p:outputLabel for="txtIngreso" value="Ingresa un Número:"/>
+                    <p:inputText id="txtIngreso" 
+                                   value="#{númerosManagedBean.num}"/>
+                    <p:commandButton id="btnAgregarNúmero" 
+                                     value="Agregar Número" 
+                                     actionListener="#{númerosManagedBean.agregarNúmero()}" 
+                                     update="tblListaNum"/> 
+                </p:panelGrid>
+                <p:panelGrid id="tblLaLista" columns="1">
+                    <p:dataTable id="tblListaNum" 
+                                 value="#{númerosManagedBean.listadoNúmeros.listaNúmeros}"
+                                 var="cadaNum"
+                                 emptyMessage="No cargó ningún Número">
+                        <p:column headerText="Lista de Números">
+                            <p:outputLabel value="#{cadaNum}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panelGrid>
+                <p:panelGrid id="tblResultados" columns="2">
+                    <p:commandButton id="btnMayor" 
+                                     value="Ver el Mayor"
+                                     actionListener="#{númerosManagedBean.calcularMayor()}"
+                                     update="lblMayor">
+                    </p:commandButton>
+                    <p:inputText id="lblMayor" value="#{númerosManagedBean.may}"/>
+                    <p:commandButton id="btnMenor" 
+                                     value="Ver el Menor"
+                                     actionListener="#{númerosManagedBean.calcularMenor()}"
+                                     update="lblMenor">
+                    </p:commandButton>
+                    <p:inputText id="lblMenor" value="#{númerosManagedBean.men}"/>
+                    <p:commandButton id="btnPromedio" 
+                                     value="Ver el Promedio"
+                                     actionListener="#{númerosManagedBean.calcularPromedio()}"
+                                     update="lblPromedio">
+                    </p:commandButton>
+                    <p:inputText id="lblPromedio" value="#{númerosManagedBean.prom}"/>
+                </p:panelGrid>
+            </h:form>
+        </p:panel>
+    </h:body>
+</html>
